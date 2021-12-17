@@ -1,11 +1,26 @@
+import os
+
+from cook_book import Cook_book
+from recept import Receipt
+
+path = os.path.join(os.getcwd(), 'recipes.txt')
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def main():
+    cook_book = Cook_book()
+    with open(path) as file:
+        for shop in file:
+            receipt = Receipt(shop.strip())
+            cook_book.add_recept(receipt)
+            count_dishes = int(file.readline().strip())
+            for item in range(count_dishes):
+                ingridient_name, count_ingridient, unit_of_measure = file.readline().split('|')
+                receipt.add_ingridient(ingridient_name, count_ingridient, unit_of_measure)
+            file.readline()
+
+    print(cook_book)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
+if __name__ == "__main__":
+    main()
