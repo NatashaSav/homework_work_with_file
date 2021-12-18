@@ -9,7 +9,7 @@ class Receipt:
     def __str__(self):
         recept_format = '{}: [\n'.format(self.name)
         for item in self.ingridients:
-            recept_format += "\t\t{},\n".format(item.__str__())
+            recept_format += "\t\t{},\n".format(item)
         recept_format += '\t\t]'
         return recept_format
 
